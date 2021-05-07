@@ -11,6 +11,7 @@ namespace Delivery.Consumable
     {
         public override int Price => 15;
         public Color Color { get; }
+        public ColoredRibbon() { }
         public ColoredRibbon(Color color)
         {
             Color = color;

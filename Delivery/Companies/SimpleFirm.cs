@@ -12,6 +12,7 @@ namespace Delivery.Companies
         public override bool Priority => false;
         public override int OrderСost { get; }
         public override Consumables Consumables { get => new RegularBox(); set { } }
+        public SimpleFirm() { }
         public SimpleFirm(int orderСost)
         {
             OrderСost = orderСost;

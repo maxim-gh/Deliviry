@@ -12,10 +12,10 @@ namespace Delivery.Calculators
     {
         public int PriceCaculator(Company company)
         {
-            if (company is GoldSecret)
+            if(company is GoldSecret)
             {
                 var denseBox = new DenseBox();
-                if (GoldSecret.FragileGoods)
+                if (GoldSecret.FragileGoods == true)
                 {
                     return company.OrderСost + denseBox.Price + denseBox.Filler.Price;
                 }
@@ -24,6 +24,11 @@ namespace Delivery.Calculators
             if(company is MagicColor)
             {
                 var colorBox = new ColorBox();
+                var coloredRibbon = new ColoredRibbon();
+                if(colorBox.Ribbon == true)
+                {
+                    return company.OrderСost + colorBox.Price + coloredRibbon.Price;
+                }
                 return company.OrderСost + colorBox.Price;
             }
             var regularBox = new RegularBox();
