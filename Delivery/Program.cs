@@ -1,4 +1,6 @@
 ﻿using System;
+using Delivery.Companies;
+using Delivery.Consumable;
 
 namespace Delivery
 {
