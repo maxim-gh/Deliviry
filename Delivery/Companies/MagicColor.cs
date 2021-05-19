@@ -10,13 +10,23 @@ namespace Delivery.Companies
     public class MagicColor : Company
     {
         public override bool Priority => false;
+        public bool Ribbon { get; }
         public ColorBox ColorBox { get; }
+        public ColoredRibbon ColoredRibbon { get; }
         public override int OrderСost { get; }
-        public override Consumables Consumables{get => new ColorBox(); set{}}
-        public MagicColor(int orderСost, Consumables consumables)
+
+        public MagicColor(int orderСost, ColorBox colorBox, bool ribbon)
         {
             OrderСost = orderСost;
-            Consumables = consumables;
+            ColorBox = colorBox;
+            Ribbon = ribbon;
+        }
+        public MagicColor(int orderСost, ColorBox colorBox, bool ribbon, ColoredRibbon coloredRibbon)
+        {
+            OrderСost = orderСost;
+            ColorBox = colorBox;
+            Ribbon = ribbon;
+            ColoredRibbon = coloredRibbon;
         }
     }
 }

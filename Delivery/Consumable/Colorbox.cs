@@ -11,19 +11,11 @@ namespace Delivery.Consumable
     {
         public override int Price => 40;
         public Color Color { get; }
-        public bool Ribbon { get; }
-        public ColoredRibbon ColoredRibbon { get; }
+
         public ColorBox() { }
-        public ColorBox(Color color, bool ribbon)
+        public ColorBox(Color color)
         {
             Color = color;
-            Ribbon = ribbon;
-        }
-        public ColorBox(Color color, bool ribbon, ColoredRibbon coloredRibbon)
-        {
-            Color = color;
-            Ribbon = ribbon;
-            ColoredRibbon = coloredRibbon;
         }
     }
 }

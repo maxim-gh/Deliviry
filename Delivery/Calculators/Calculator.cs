@@ -10,29 +10,24 @@ namespace Delivery.Calculators
 {
     public class Calculator
     {
-        public int PriceCaculator(Company company)
+        private ICalculator[] _concreteCalculators;
+
+        public Calculator(ICalculator[] concreteCalculators)
         {
-            if(company is GoldSecret)
+            _concreteCalculators = concreteCalculators;
+        }
+
+        public int PriceCalculator(Company company) 
+        {
+            foreach (var concreteCalculator in _concreteCalculators)
             {
-                var denseBox = new DenseBox();
-                if (GoldSecret.FragileGoods == true)
+                if (concreteCalculator.IsSuitable(company))
                 {
-                    return company.OrderСost + denseBox.Price + denseBox.Filler.Price;
+                    return concreteCalculator.PriceCalculator(company);
                 }
-                return company.OrderСost + denseBox.Price;
             }
-            if(company is MagicColor)
-            {
-                var colorBox = new ColorBox();
-                var coloredRibbon = new ColoredRibbon();
-                if(colorBox.Ribbon == true)
-                {
-                    return company.OrderСost + colorBox.Price + coloredRibbon.Price;
-                }
-                return company.OrderСost + colorBox.Price;
-            }
-            var regularBox = new RegularBox();
-            return company.OrderСost + regularBox.Price;
+
+            throw new ArgumentException("Неизвестная компания");
         }
     }
 }

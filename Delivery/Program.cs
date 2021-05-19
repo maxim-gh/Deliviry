@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Delivery.Companies;
 using Delivery.Consumable;
 using Delivery.Calculators;
@@ -9,21 +10,27 @@ namespace Delivery
     {
         static void Main(string[] args)
         {
-            var calculator = new Calculator();
-            var studio = new Studio(new Storage("У.Пушкина", "Вася", new SimpleFirm(1000)), calculator);
-            
+            var Storage = new List<Order>();
+            var calculator = new Calculator(new ICalculator[]
+            {
+                new GSCalculator(),
+                new MCCalculator(),
+                new SFCalculator()
+            });
+
             var Order = new Order[]
             {
                 new Order("У.Пушкина", "Вася", new SimpleFirm(1000)),
                 new Order("У.Колотушкина", "Коля", new GoldSecret(1000, true)),
                 new Order("У.Ленина", "Антон", new GoldSecret(1000, false)),
-                new Order("У.Пролетарская", "Леша", new MagicColor(1000, new ColorBox(Color.Black, false))),
-                new Order("У.Коли Мяготина", "Петя", new MagicColor(1000, new ColorBox(Color.Green, true, new ColoredRibbon(Color.Pink))))
+                new Order("У.Пролетарская", "Леша", new MagicColor(1000, new ColorBox(Color.White),true, new ColoredRibbon(Color.Black))),
+                new Order("У.Коли Мяготина", "Петя", new MagicColor(1000,new ColorBox(Color.Green), false))
             };
-
+            
             foreach(var element in Order)
-            {
-                Console.WriteLine($"{element.ReceiverName} c {element.DeliveryAddress} должен заплатить {calculator.PriceCaculator(element.Company)}")
+            { 
+                Storage.Add(element);
+                Console.WriteLine($"{element.ReceiverName} c {element.DeliveryAddress} должен заплатить {calculator.PriceCalculator(element.Company)}");
             }
         }
     }

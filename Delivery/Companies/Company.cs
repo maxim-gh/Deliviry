@@ -10,7 +10,6 @@ namespace Delivery.Companies
     public abstract class  Company
     {
         public abstract int OrderСost { get; }
-        public abstract Consumables Consumables { get; set; }
         public abstract bool Priority { get; }
     }
 }
